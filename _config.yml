@@ -40,7 +40,7 @@ theme_switch: on         # Show color switch (on | off)
 blog: on                 # Show blog tag and post list (on | off)
 avatar: off               # Show avatar (on | off)
 avatar_image: "assets/img/avatar.jpg"
-avatar_description: "고양이"
+avatar_description: "cat"
 highlighter_theme: gruvbox  # Theme of the syntax_highlighter [base16 |
                             # colorful | github | gruvbox | molokai |
                             # monokai | pastie | thankful_eyes | tulip ]
