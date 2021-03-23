@@ -4,8 +4,7 @@ title: About
 ---
 
 <p class="message">
-[이전 블로그](https://chanin-diary.tistory.com) 
-Learn more and contribute on [GitHub](https://github.com/poole)
+[이전 블로그](https://chanin-diary.tistory.com)
 </p>
 
 ## 출생
