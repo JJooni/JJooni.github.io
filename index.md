@@ -3,7 +3,7 @@ layout: default
 title: 찬인의 Computer Science 공부 일기장
 description: Test page
 ---
-# Lorem ipsum
+# 게시물
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
