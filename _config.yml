@@ -13,9 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: jekyll-theme-potato-hacker
-author: "<your_name>"
-email: "<your@mail>"
+title: 찬인의 Computer Science 공부 일기장
+author: "김찬인"
+email: "10urc0de@gmail.com"
 description: A simple Jekyll theme based on potatoes and hackers
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jjooni.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -24,7 +24,7 @@ url: "https://jjooni.github.io" # the base hostname & protocol for your site, e.
 # Custom settings
 # ------------------------------------------------------------------------------
 # Useful links
-github_username: "<github_username>"
+github_username: "10urc0de"
 facebook_username: "<facebook_username>"
 twitter_username: "<twitter_username>"
 linkedin_id: "<linkedin_id>"
@@ -33,7 +33,7 @@ linkedin_id: "<linkedin_id>"
 # theme: jekyll-theme-potato-hacker                 # Uncomment this
 # remote_theme: luxedo/jekyll-theme-potato-hacker   # Or this
 theme_repository: "https://github.com/luxedo/jekyll-theme-potato-hacker"
-theme_base: "dark"       # Theme palette (light | dark)
+theme_base: "light"       # Theme palette (light | dark)
 theme_switch: on         # Show color switch (on | off)
 
 # Extra settings
