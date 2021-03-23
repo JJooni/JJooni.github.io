@@ -33,14 +33,14 @@ linkedin_id: "<linkedin_id>"
 # theme: jekyll-theme-potato-hacker                 # Uncomment this
 # remote_theme: luxedo/jekyll-theme-potato-hacker   # Or this
 theme_repository: "https://github.com/luxedo/jekyll-theme-potato-hacker"
-theme_base: "light"       # Theme palette (light | dark)
+theme_base: "dark"       # Theme palette (light | dark)
 theme_switch: on         # Show color switch (on | off)
 
 # Extra settings
 blog: on                 # Show blog tag and post list (on | off)
-avatar: on               # Show avatar (on | off)
+avatar: off               # Show avatar (on | off)
 avatar_image: "assets/img/avatar.jpg"
-avatar_description: "My name is Popotato and I'm a HACKER."
+avatar_description: "고양이"
 highlighter_theme: gruvbox  # Theme of the syntax_highlighter [base16 |
                             # colorful | github | gruvbox | molokai |
                             # monokai | pastie | thankful_eyes | tulip ]
