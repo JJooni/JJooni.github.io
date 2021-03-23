@@ -5,7 +5,8 @@ title: About
 
 <p class="message">
 [이전 블로그](https://chanin-diary.tistory.com) 
-Learn more and contribute on [GitHub](https://github.com/poole).
+Learn more and contribute on [GitHub](https://github.com/poole)
+</p>
 
 ## 출생
 
