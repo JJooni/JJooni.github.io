@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "First post"
+title:  "첫번째 포스트"
 date:   2016-10-06 12:07:12 -0200
 categories: blog
 layout: post
