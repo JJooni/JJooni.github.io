@@ -32,9 +32,9 @@ sass:
 
 # Specify the author for blog posts
 author:
-  name: Mark Otto
+  name: 김찬인
   url: https://twitter.com/mdo
-  email: markdotto@gmail.com
+  email: 10urc0de@gmail.com
 
 # Custom vars
 version: 3.0.0
