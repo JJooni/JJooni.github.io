@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Potato Hacker
+title: 찬인의 Computer Science 공부 일기장
 description: Test page
 ---
 # Lorem ipsum
