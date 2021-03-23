@@ -1,4 +1,6 @@
 source "https://rubygems.org"
-gemspec
-gem 'omniauth-google-oauth2'
-gem "kramdown-parser-gfm"
+
+gem "jekyll"
+gem "jekyll-gist"
+gem "jekyll-paginate"
+gem "jekyll-seo-tag"

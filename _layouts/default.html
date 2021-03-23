@@ -1,87 +1,59 @@
----
----
 <!DOCTYPE html>
-<html>
-{% include head.html %}
+<html lang="en" data-theme="dark-poole">
+  {% include head.html %}
 
-<body class="animated fadeIn">
-  <div class="container">
-    <div id="background-div">
-      <svg id="background-svg">
-        <lineargradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
-          <stop stop-opacity="0" class="bgColor2" offset="0%" />
-          <stop stop-opacity="0.5" class="bgColor2" offset="10%" />
-          <stop stop-opacity="0.5" class="bgColor1" offset="40%" />
-          <stop stop-opacity="0" class="bgColor1" offset="100%" />
-        </lineargradient>
-        <g id="bg-layer1"></g>
-        <g id="bg-layer2" class="hide"></g>
-        <g id="bg-layer3"></g>
-        <g id="bg-layer4"></g>
-      </svg>
+  <body>
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
+
+          <nav class="nav">
+            {% for nav in site.nav %}
+            <small><a href="{{ nav.url }}">{{ nav.title }}</a></small>
+            {% endfor %}
+          </nav>
+        </h3>
+      </header>
+
+      <main>
+        {{ content }}
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy;
+          <time datetime="{{ site.time | date_to_xmlschema }}"
+            >{{ site.time | date: '%Y' }}</time
+          >. All rights reserved.
+        </small>
+      </footer>
     </div>
-    <section class="header">
-      {% include header.html %}
-    </section>
-    <section class="content">
-      <div class="row">
-        <!-- <div class="col-sm-2">
-          <div class="pane-separator hidden-xs" style="margin-bottom:30em;"></div>
-          <div class="left-pane">
-          </div>
-        </div> -->
-        <div class="col-sm-8 col-sm-offset-2 content-div">
-          <div class="page-separator hidden-xs">
-            <h1 class="h1-strip" style="padding-bottom:8em; margin-bottom: 0;"></h1>
-          </div>
-          <div class="page-separator visible-xs">
-            <h1 class="h1-strip" style="padding-bottom:2em; margin-bottom: 0;"></h1>
-          </div>
-          <h1 class="post-title page-title" id="title"><a href="#title">{{ page.title }}</a></h1>
-          {{ content }}
-        </div>
-        <div class="col-sm-2">
-          <div class="pane-separator hidden-xs" style="margin-bottom:30em;"></div>
-          <div class="pane-separator visible-xs" style="margin-bottom:5em;"></div>
-          <div class="right-pane" style="margin-left: 1em;">
-            {% if site.avatar == true %}
-              <div class="avatar">
-                <center>
-                  {% if site.avatar_image != null %}
-                    <img src="{{ site.avatar_image | prepend: '/' | prepend: site.baseurl }}" alt="me" class="avatar-image">
-                  {% endif %}
-                  {% if site.avatar_description != null %}
-                    <p class="avatar-description">{{site.avatar_description}}</p>
-                  {% endif %}
-                  <div class="right-links">
-                    {% include links.html %}
-                  </div>
-                </center>
-              </div>
-            {% endif %}
-            {% if site.blog == true %}
-              <div class="posts-list">
-                <a href="{{ '/blog' | prepend: site.baseurl }}">
-                  <h4>Recent Posts:</h4>
-                </a>
-                <ul>
-                  {% for i in (1..site.recent_posts) %}
-                     {% assign post = site.posts[i] %}
-                  <li>
-                    <a href="{{ post.url | prepend: site.baseurl  }}">{{ post.title }}</a>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="footer">
-      {% include footer.html %}
-    </section>
-  </div>
-</body>
 
+    {% if site.ga_analytics %}
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+      ga("create", "{{ site.ga_analytics }}", "auto");
+      ga("send", "pageview");
+    </script>
+    {% endif %}
+  </body>
 </html>

@@ -1,125 +1,128 @@
-# jekyll-theme-potato-hacker
-[![Gem Version](https://badge.fury.io/rb/jekyll-theme-potato-hacker.svg)](https://badge.fury.io/rb/jekyll-theme-potato-hacker)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+# Dark Poole
 
+![Dark Poole](https://user-images.githubusercontent.com/13270895/89133355-26b3af80-d4e9-11ea-81cd-eacaa9c78320.png)
 
-Welcome to your new Jekyll theme! In this directory, you'll find the files you need to be able to package up your theme into a gem. Put your layouts in `_layouts`, your includes in `_includes` and your sass in `_sass`. To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
+Dark Poole is a permanent dark theme of the Poole theme by [@mdo](https://github.com/mdo). I made the theme darker, inspired by [Derek Kedziora's site](https://derekkedziora.com/). Unlike default Poole that utilizes CSS media queries to activate dark mode, the theme will stay dark regardless of the user's preference.
 
-![screenshot](https://raw.githubusercontent.com/luxedo/jekyll-theme-potato-hacker/master/screenshot.png "screenshot")
+- I added a navbar that is easily customizable. Check out [Development](#development) to see how.
+- I also got rid of the "tagline" in the navbar. I think it looks cleaner without it.
+- Finally, I changed the default font size to 20px. I have 20/20 vision and still thought the original font size was too small.
 
-Check out the [demo](https://luxedo.github.io/jekyll-theme-potato-hacker/)
-Check out the [gem](https://rubygems.org/gems/jekyll-theme-potato-hacker)
+That's it! I tried to be least intrusive as possible to the Poole code base.
 
-## Installation
+**I noticed that Poole's documentation is slightly outdated and misleading. This documentation will try to address most, if not all, of these issues.**
 
-Add this line to your Jekyll site's Gemfile:
+---
 
-```ruby
-gem "jekyll-theme-potato-hacker"
-```
+## Contents
 
-And add this line to your Jekyll site's `_config.yml`:
-
-```yaml
-theme: jekyll-theme-potato-hacker
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install jekyll-theme-potato-hacker
-
-Or even use the remote theme tag in `_config.yml` if you're using github pages:
-```yaml
-remote_theme: luxedo/jekyll-theme-potato-hacker
-```
+- [Usage](#usage)
+- [Development](#development)
+- [Author](#author)
+- [License](#license)
 
 ## Usage
 
-### Pages
+### 1. Install dependencies
 
-This is a simple theme I made to my portfolio/blog https://luxedo.github.io/
-There are four different categories of pages for this template:
-* Main page `index.md` in the root.
-* Item pages `_items` folder.
-* Blog posts `_posts` folder.
-* Dropdown pages `_dropdown` folder.
+Poole is built on Jekyll and uses its built-in SCSS compiler to generate our CSS. Before getting started, you'll need to install the Jekyll gem and related dependencies:
 
-### Dropdown
-The dropdown menus are generated based on the [front matter](https://jekyllrb.com/docs/front-matter/) data in the files. Use the `dropdown` attribute to chose where the page will be placed. The items with the highest `priority` will be placed first.
-```yaml
----
-layout: page
-title: dropdown1 item1
-description: Test page
-dropdown: dropdown1
-priority: 1
----
+```bash
+$ gem install jekyll jekyll-gist jekyll-sitemap jekyll-seo-tag
 ```
 
-### Blog
-If you want to use the blog, you need to set `blog: on` inside `_config.yml` and add a `blog.md` file in your root directory:
-```yaml
----
-layout: blog-index
-title: My Blog
-description: Test page
----
+### 2. Install bundler
+
+You must have bundler installed. If you already have bundler installed, please skip this step.
+
+```bash
+# Update Rubygems
+$ gem update --system
+# Update bundler
+$ gem install bundler
 ```
 
-### \_config.yml
-Some settings are defined in `_config.yml`. Download the file in this repo
-for a complete example.
-```yaml
-# Useful links
-github_username: "<github_username>"
-facebook_username: "<facebook_username>"
-twitter_username: "<twitter_username>"
-linkedin_id: "<linkedin_id>"
+### 3. Running locally
 
-# Theme
-# theme: jekyll-theme-potato-hacker                 # Uncomment this
-# remote_theme: luxedo/jekyll-theme-potato-hacker   # Or this
-theme_repository: "https://github.com/luxedo/jekyll-theme-potato-hacker"
-theme_base: "dark"       # Theme palette (light | dark)
-theme_switch: on         # Show color switch (on | off)
+To see your Jekyll site with Poole applied, start a Jekyll server. In Terminal, from `/dark-poole` (or whatever your Jekyll site's root directory is named):
 
-# Extra settings
-blog: on                 # Show blog tag and post list (on | off)
-avatar: on               # Show avatar (on | off)
-avatar_image: "assets/img/avatar.jpg"
-avatar_description: "My name is Popotato and I'm a HACKER."
-highlighter_theme: monokai  # Theme of the syntax_highlighter [base16 |
-                            # colorful | github | gruvbox | molokai |
-                            # monokai | pastie | thankful_eyes | tulip ]
-toolbar_priority:        # Order of the items in the toolbar (except for blog and home)
-  - dropdown2
-  - About
-  - dropdown1
-
-# Collections
-collections:
-  dropdown:
-    output: true
-  items:
-    output: true
+```bash
+$ bundle exec jekyll serve
 ```
 
-## Contributing
+Open <http://localhost:4000> in your browser, and voilà.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/luxedo/jekyll-theme-potato-hacker/issues. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+### 4. Serving it up
+
+If you host your code on GitHub, you can use [GitHub Pages](https://pages.github.com) to host your project.
+
+1. Fork this repo and switch to the `gh-pages` branch.
+1. If you're [using a custom domain name](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages), modify the `CNAME` file to point to your new domain.
+1. If you're not using a custom domain name, **modify the `url` in `_config.yml`** to point to your GitHub Pages URL. Example: for a site hosted at `username.github.io`, use `http://username.github.io`.
+1. If you want to use your repo name as a base url, **set the `url`** to your repo link and **set the `baseurl`** to your repo name in **`_config.yml`**. Example: for site hosted on `https://username.github.io/dark-poole`, set `url` as `https://username.github.io/dark-poole` and `baseurl` as `/dark-poole`.
+1. Done! Head to your GitHub Pages URL or custom domain.
+
+No matter your production or hosting setup, be sure to verify the `baseurl` option file and `CNAME` settings. Not applying this correctly can mean broken styles on your site.
+
+### 5. Pagination for sites with base urls
+
+If you are using a base url for your site, (for example, hosted on `https://username.github.io/dark-poole`) you have to make some changes to get jekyll-pagination to work correctly:
+
+In `_config.yml`, add this line:
+
+```yaml
+paginate_path: "/baseurl/page:num/"
+```
+
+In `archive.md`, add `{{ site.baseurl }}` before `{{ post.url }}`
+
+```html
+<!-- Add "{{ site.baseurl }}" -->
+<li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+```
+
+In `index.html`, remove the `prepend:`:
+
+```html
+<!-- Remove "prepend:" in "prepend: relative_url" -->
+<a
+  class="pagination-item newer"
+  href="{{ paginator.previous_page_path | relative_url }}"
+  >Newer</a
+>
+```
 
 ## Development
 
-To set up your environment to develop this theme, run `bundle install`.
+Poole has two branches, but only one is used for active development.
 
-You theme is setup just like a normal Jelyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+- `master` for development. **All pull requests should be to submitted against `master`.**
+- `gh-pages` for hosted demo **Please avoid using this branch.**
 
-When your theme is released, only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be released.
+CSS is handled via Jeykll's built-in Sass compiler. Source Sass files are located in `_sass/`, included into `styles.scss`, and compile to `styles.css`.
+
+### Customize Navbar
+
+You can easily customize the navbar by tweaking the `_config.yml` file. Simply change the title and url of each of the nav elements, or add more. The order will be preserved in the site.
+
+```yaml
+nav:
+  - title: Blog
+    url: /archive
+
+  - title: About
+    url: /about
+```
+
+## Author
+
+**Mark Otto**
+
+- <https://github.com/mdo>
+- <https://twitter.com/mdo>
 
 ## License
 
-The theme is available as open source under the terms of the [GPL-3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
+Open sourced under the [MIT license](LICENSE.md).
+
+<3
