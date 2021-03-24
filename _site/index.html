@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-poole">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      찬인의 Computer study note
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="찬인의 Computer study note" href="/atom.xml">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Home" />
+<meta name="author" content="김찬인" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="찬인의 Computer study note" />
+<script type="application/ld+json">
+{"headline":"Home","url":"http://localhost:4000/","name":"찬인의 Computer study note","author":{"@type":"Person","name":"김찬인"},"@type":"WebSite","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">찬인의 Computer study note</a>
+
+          <nav class="nav">
+            
+            <small><a href="/archive">Blog</a></small>
+            
+            <small><a href="/about">About</a></small>
+            
+          </nav>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/2020/03/24/pwnable.kr_bof_writeup/">
+        pwnable.kr wargame bof write-up
+      </a>
+    </h1>
+
+    <time datetime="2020-03-24T00:00:00+09:00" class="post-date">24 Mar 2020</time>
+
+    <p><br />
+문제는 <a href="http://pwnable.kr/play.php">pwnable.kr</a>에서 받으실 수 있습니다.</p>
+
+<hr />
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+</span>
+<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">){</span>
+  <span class="kt">char</span> <span class="n">overflowme</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"overflow me : "</span><span class="p">);</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">overflowme</span><span class="p">);</span>	<span class="c1">// smash me!</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="mh">0xcafebabe</span><span class="p">){</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">"/bin/sh"</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Nah..</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[]){</span>
+  <span class="n">func</span><span class="p">(</span><span class="mh">0xdeadbeef</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>key가 0xcafebabe이면 쉘을 실행시켜준다.<br />
+입력은 overflowme 변수에 받기 때문에 key와 overflowme의 거리를 알면<br />
+bof를 할 수 있을 것이다.<br />
+gdb로 실행시켜보자.<br /></p>
+
+<p><img src="/assets/img.png" alt="캡처" /></p>
+
+<p>두번째 함수 콜은 gets 함수를 호출하는 부분이다.
+<br /><br />여기에 overflowme가 인자로 들어가니까 
+<br /><strong>overflowme는 ebp - 0x2c</strong> 에 있음을 알 수 있다.
+<br /><br />그 아래에 ebp+0x8 위치와 0xcafebabe를 비교하니까 
+<br /><strong>key는 ebp + 0x8</strong> 에 위치하는 것을 알 수 있다.
+<br /><br />bof를 위해 채워줘야 하는 문자의 수는 <strong>0x2c + 0x8 = 0x34(52)</strong> 이다.
+<br />이제 페이로드를 짜 보자.</p>
+
+<p>출처: https://chanin-diary.tistory.com/31 [찬인이의 IT 공부 일기장]
+Poole is the butler for <a href="http://jekyllrb.com">Jekyll</a>, the static site generator. It’s designed and developed by <a href="https://twitter.com/mdo">@mdo</a> to provide a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example layouts, pages, posts, and styles.</p>
+
+<p>This demo site was last updated March 24, 2021.
+There are currently two themes built on Poole:</p>
+
+<ul>
+  <li><a href="http://hyde.getpoole.com">Hyde</a></li>
+  <li><a href="http://lanyon.getpoole.com">Lanyon</a></li>
+</ul>
+
+<p>Learn more and contribute on <a href="">GitHub</a>.</p>
+
+<h2 id="whats-included">What’s included</h2>
+
+<p>Poole is a streamlined Jekyll site designed and built as a foundation for building more meaningful themes. Poole, and every theme built on it like this one, includes the following:</p>
+
+<ul>
+  <li>Complete Jekyll setup included (layouts, config, <a href="/404.html">404</a>, <a href="/atom.xml">RSS feed</a>, posts, <a href="/archive">archive page</a>, and <a href="/about">example page</a>)</li>
+  <li>Mobile friendly design and development</li>
+  <li>Easily scalable text and component sizing with <code class="language-plaintext highlighter-rouge">rem</code> units in the CSS</li>
+  <li>Support for a wide gamut of HTML elements</li>
+  <li>Related posts (time-based, because Jekyll) below each post</li>
+  <li>Syntax highlighting, courtesy Jekyll’s built-in support for Rouge</li>
+</ul>
+
+<p>Additional features are available in individual themes.</p>
+
+<h2 id="browser-support">Browser support</h2>
+
+<p>Poole and its themes are by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), Firefox, and Edge.</p>
+
+<h2 id="download">Download</h2>
+
+<p>These themes are developed on and hosted with GitHub. Head to the <a href="">GitHub repository</a> for downloads, bug reports, and features requests.</p>
+
+<p>Thanks!</p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <span class="pagination-item older">Older</span>
+  
+  
+    <span class="pagination-item newer">Newer</span>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy;
+          <time datetime="2021-03-24T14:28:35+09:00"
+            >2021</time
+          >. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

