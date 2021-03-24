@@ -6,7 +6,7 @@ title: pwnable.kr wargame bof write-up
 간단한 bof 문제이다.
 바로 소스코드를 열어보자.
 <br>
-```c
+{% highlight js linenos %}
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
   func(0xdeadbeef);
   return 0;
 }
-```
+{% endhighlight %}
 Poole is the butler for [Jekyll](http://jekyllrb.com), the static site generator. It's designed and developed by [@mdo](https://twitter.com/mdo) to provide a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example layouts, pages, posts, and styles.
 
 This demo site was last updated {{ site.time | date: "%B %d, %Y" }}.
