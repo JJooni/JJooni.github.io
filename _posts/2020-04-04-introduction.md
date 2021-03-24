@@ -1,12 +1,32 @@
 ---
 layout: post
-title: Introduction
+title: pwnable.kr wargame bof write-up
 ---
 
-*The Strange Case of Dr. Jekyll and Mr. Hyde* tells the story of a lawyer investigating the connection of two persons, Dr. Henry Jekyll and Mr. Edward Hyde. Chief among the novel's supporting cast is a man by the name of Mr. Poole, Dr. Jekyll's loyal butler.
+간단한 bof 문제이다.
+바로 소스코드를 열어보자.
+<br>
+```C
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
------
-
+void func(int key){
+  char overflowme[32];
+  printf("overflow me : ");
+  gets(overflowme);	// smash me!
+  if(key == 0xcafebabe){
+    system("/bin/sh");
+  }
+  else{
+    printf("Nah..\n");
+  }
+}
+int main(int argc, char* argv[]){
+  func(0xdeadbeef);
+  return 0;
+}
+```
 Poole is the butler for [Jekyll](http://jekyllrb.com), the static site generator. It's designed and developed by [@mdo](https://twitter.com/mdo) to provide a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example layouts, pages, posts, and styles.
 
 This demo site was last updated {{ site.time | date: "%B %d, %Y" }}.
