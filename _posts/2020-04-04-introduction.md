@@ -6,7 +6,7 @@ title: pwnable.kr wargame bof write-up
 간단한 bof 문제이다.
 바로 소스코드를 열어보자.
 <br>
-```C
+```c
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
