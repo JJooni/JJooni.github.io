@@ -2,9 +2,9 @@
 layout: post
 title: pwnable.kr wargame bof write-up
 ---
+[pwnable.kr](http://pwnable.kr/play.php)
+----
 
-간단한 bof 문제이다.  
-바로 소스코드를 열어보자.
 <br>
 {% highlight c linenos %}
 #include <stdio.h>
