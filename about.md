@@ -2,8 +2,9 @@
 layout: page
 title: About
 ---
-
+<br>
 [이전 블로그](https://chanin-diary.tistory.com)
+
 
 
 ## 출생
@@ -11,10 +12,13 @@ title: About
 - 2003년 익산 출생
 
 
+
 ## 소속
 
 - 한국게임과학고등학교 컴퓨터게임개발과
 - TeamH4C 소속
+
+
 
 ## 활동 내역
 - K-Shield Jr 보안사고분석대응과정 4기 수료
