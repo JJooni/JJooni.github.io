@@ -1,8 +1,8 @@
 # Setup
-title: 찬인의 Computer Science 공부 일기장
+title: 찬인의 Computer study note
 url: https://jjooni.github.io
 paginate: 1
-baseurl: ""
+baseurl: "/archive/"
 permalink: pretty
 
 # Gems
