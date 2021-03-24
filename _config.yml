@@ -2,7 +2,7 @@
 title: 찬인의 Computer study note
 url: https://jjooni.github.io
 paginate: 1
-baseurl: "/archive/"
+baseurl: ""
 permalink: pretty
 
 # Gems
