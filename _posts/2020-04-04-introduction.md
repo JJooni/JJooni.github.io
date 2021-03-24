@@ -3,10 +3,10 @@ layout: post
 title: pwnable.kr wargame bof write-up
 ---
 
-간단한 bof 문제이다.
+간단한 bof 문제이다.  
 바로 소스코드를 열어보자.
 <br>
-{% highlight js linenos %}
+{% highlight c linenos %}
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -27,6 +27,12 @@ int main(int argc, char* argv[]){
   return 0;
 }
 {% endhighlight %}
+
+key가 0xcafebabe이면 쉘을 실행시켜준다.<br>
+입력은 overflowme 변수에 받기 때문에 key와 overflowme의 거리를 알면 bof를 할 수 있을 것이다.<br>
+gdb로 실행시켜보자.<br>
+
+![placeholder](assets/img.png "Large example image")
 Poole is the butler for [Jekyll](http://jekyllrb.com), the static site generator. It's designed and developed by [@mdo](https://twitter.com/mdo) to provide a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example layouts, pages, posts, and styles.
 
 This demo site was last updated {{ site.time | date: "%B %d, %Y" }}.
