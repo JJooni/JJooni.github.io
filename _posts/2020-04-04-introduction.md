@@ -2,7 +2,9 @@
 layout: post
 title: pwnable.kr wargame bof write-up
 ---
-[pwnable.kr](http://pwnable.kr/play.php)
+
+문제는 [pwnable.kr](http://pwnable.kr/play.php)에서 받으실 수 있습니다.
+
 ----
 
 <br>
@@ -36,7 +38,6 @@ gdb로 실행시켜보자.<br>
 Poole is the butler for [Jekyll](http://jekyllrb.com), the static site generator. It's designed and developed by [@mdo](https://twitter.com/mdo) to provide a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example layouts, pages, posts, and styles.
 
 This demo site was last updated {{ site.time | date: "%B %d, %Y" }}.
-
 There are currently two themes built on Poole:
 
 * [Hyde](http://hyde.getpoole.com)
