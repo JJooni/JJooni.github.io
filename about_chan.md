@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: About_chan
 ---
 
 <br>
@@ -9,6 +9,10 @@ title: About
 ---
 
 <br>
+
+## 본명
+
+- 김찬인 
 
 ## 출생
 
