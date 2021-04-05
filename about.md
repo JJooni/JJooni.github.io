@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About_chan
+title: About
 ---
 
 <br>
