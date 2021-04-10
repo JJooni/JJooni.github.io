@@ -45,4 +45,4 @@ title: About
 - [K-Shield Jr 보안사고분석대응과정](http://www.kshieldjr.org/tlnt_mu01_002.do) 4기 수료
 - 제 21회 [해킹캠프](http://hackingcamp.org/index.html#header) 참가
 - 제 2회 [TeamH4C](https://teamh4c.com/) CTF 문제 출제 (포렌식, 리버싱)
-- 2021 [TeamH4C](https://teamh4c.com/) Webinar - Network Hacking is too fun! 발표
+- 2021 [TeamH4C](https://teamh4c.com/) Webinar - [Network Hacking is too fun!](https://youtu.be/myeHc0P81Pk) 발표
