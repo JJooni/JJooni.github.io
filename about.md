@@ -22,6 +22,7 @@ title: About
 
 ## 연락처
 - JJJJoooni@gmail.com
+
 ## 소속
 
 - 한국게임과학고등학교 컴퓨터게임개발과
