@@ -74,8 +74,10 @@ gdb를 통해 SFP가 어떻게 변조되는지 확인해보자.
 cp_name의 변수 위치는 ebp - 0x100이다.<br>
 ebp - 0x100의 주소 값을 확인해보자.
 
+<br>
 ![img2](/assets/img4.png)
 이제 cp_name 변수의 끝 부분이 NULL Byte(\x00)로 잘 변조되었는지 확인해보자.
+<br>
 ![img3](/assets/img5.png)
 0xffffd490의 값이 0xffffd400으로 변조되었다.<br>
 <br>
