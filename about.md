@@ -33,15 +33,19 @@ title: About
 - Batch
 - Linux Shell
 - SQL
+- AutoHotKey
 
 ## 기술 스택
+- Unity
+- MFC
+- cocos2d
 - 크롤링 잘함
 - 머신러닝, 딥러닝 겉핥기만 했음
-- 업무 자동화 프로그램 개발 
+- 업무 자동화 프로그램 개발(Python, AutoHotKey) 
 - 게임 개발 경험 다수
 - 어플리케이션 개발 경험 다수
 - 전교생 자가진단 자동화 해주다가 교육청에서 연락와서 선생님께 혼남
-- [XSS Black box fuzzing tool](https://github.com/10urc0de/XSS-Analysis-Tool) 개발 (2020년, 재개발 예정)
+- [XSS Black box fuzzing tool](https://github.com/10urc0de/XSS-Analysis-Tool) 개발 (2020년, 재개발 예정, MFC, Python )
 
 ## 활동 내역
 - [K-Shield Jr 보안사고분석대응과정](http://www.kshieldjr.org/tlnt_mu01_002.do) 4기 수료
