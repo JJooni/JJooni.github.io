@@ -21,7 +21,7 @@ title: About
 - 19살
 
 ## 연락처
-- JJJJoooni@gmail.com
+- JJJJooooni@gmail.com
 
 ## 소속
 
