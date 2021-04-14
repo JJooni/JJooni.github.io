@@ -47,14 +47,15 @@ title: About
 ## History
 - 크롤링 잘함
 - 머신러닝, 딥러닝 겉핥기만 했음
-- 업무 자동화 프로그램 개발(Python, AutoHotKey) 
+- 업무 자동화 프로그램 개발(Python, AutoHotKey, OCR 기술 활용) 
 - 게임 개발 경험 다수
 - 어플리케이션 개발 경험 다수
 - 전교생 자가진단 자동화 해주다가 교육청에서 연락와서 선생님께 혼남(Python, NaverCloudPlatform)
 - [XSS Black box fuzzing tool](https://github.com/10urc0de/XSS-Analysis-Tool) 개발 (2020년, 재개발 예정, MFC, Python )
+- 한국게임과학고등학교 정보보안 동아리 개설 및 강의 (2020.06 ~ )
 
 ## 활동 내역
 - [K-Shield Jr 보안사고분석대응과정](http://www.kshieldjr.org/tlnt_mu01_002.do) 4기 수료
 - 제 21회 [해킹캠프](http://hackingcamp.org/index.html#header) 참가
 - 제 2회 [TeamH4C](https://teamh4c.com/) CTF 문제 출제 (포렌식, 리버싱)
-- 2021 [TeamH4C](https://teamh4c.com/) Webinar - [Network Hacking is too fun!](https://youtu.be/myeHc0P81Pk) 발표
+- 제 1회 [TeamH4C](https://teamh4c.com/) Webinar - [Network Hacking is too fun!](https://youtu.be/myeHc0P81Pk) 발표
